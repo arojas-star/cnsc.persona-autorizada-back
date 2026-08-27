@@ -9,6 +9,7 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<AlumnoPersonaRecojo> AlumnoPersonasRecojo => Set<AlumnoPersonaRecojo>();
+    public DbSet<FeatureFlag> FeatureFlags { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -23,5 +24,12 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<AlumnoPersonaRecojo>()
             .ToTable("AlumnoPersonaRecojo", schema: "matricula");
+
+        modelBuilder.Entity<FeatureFlag>(entity =>
+        {
+            entity.ToTable("Parametro", schema: "sistemas");
+
+            entity.HasKey(x => x.IdentificadorParametro);
+        });
     }
 }

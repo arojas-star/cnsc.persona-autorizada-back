@@ -79,3 +79,4 @@ C:\Users\arojas\Desktop\proyectos\personaAutorizadaBack\obj\Debug\net9.0\refint\
 C:\Users\arojas\Desktop\proyectos\personaAutorizadaBack\obj\Debug\net9.0\personaAutorizadaBack.pdb
 C:\Users\arojas\Desktop\proyectos\personaAutorizadaBack\obj\Debug\net9.0\personaAutorizadaBack.genruntimeconfig.cache
 C:\Users\arojas\Desktop\proyectos\personaAutorizadaBack\obj\Debug\net9.0\ref\personaAutorizadaBack.dll
+C:\Users\arojas\Desktop\proyectos\personaAutorizadaBack\obj\Debug\net9.0\personaAutorizadaBack.sourcelink.json

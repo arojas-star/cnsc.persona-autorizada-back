@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using personaAutorizadaBack.Configuration;
+using personaAutorizadaBack.Middleware;
+using personaAutorizadaBack.Options;
 using personaAutorizadaBack.Repository;
 using personaAutorizadaBack.Repository.Interfaces;
 using personaAutorizadaBack.Services;
@@ -22,6 +24,8 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddMemoryCache();
+
 builder.Services.AddDbContextFactory<AppDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")
@@ -30,10 +34,16 @@ builder.Services.AddDbContextFactory<AppDbContext>(options =>
 builder.Services.Configure<ApiExternaSettings>(
     builder.Configuration.GetSection("ApiExterna"));
 
+builder.Services.Configure<FeatureFlagOptions>(
+    builder.Configuration.GetSection("FeatureFlags"));
+
 builder.Services.AddScoped<IAlumnoRepository, AlumnoRepository>();
 builder.Services.AddScoped<IAlumnoPersonaRecojoRepository, AlumnoPersonaRecojoRepository>();
+builder.Services.AddScoped<IFeatureFlagRepository, FeatureFlagRepository>();
+
 builder.Services.AddScoped<IAlumnoPersonaRecojoService, AlumnoPersonaRecojoService>();
 builder.Services.AddScoped<IAlumnoService, AlumnoService>();
+builder.Services.AddScoped<IFeatureFlagService, FeatureFlagService>();
 
 builder.Services.AddHttpClient<IApiExternaService, ApiExternaService>(
     (serviceProvider, client) =>
@@ -80,6 +90,8 @@ app.UseCors(corsPolicyName);
 //app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<GlobalServiceMiddleware>();
 
 app.MapControllers();
 

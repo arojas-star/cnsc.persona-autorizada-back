@@ -12,3 +12,8 @@ Accept: application/json
 
 GET {{personaAutorizadaBack_HostAddress}}/Alumno/TipoDocumento
 Accept: application/json
+
+###
+
+GET {{personaAutorizadaBack_HostAddress}}/ServiceStatus
+Accept: application/json
