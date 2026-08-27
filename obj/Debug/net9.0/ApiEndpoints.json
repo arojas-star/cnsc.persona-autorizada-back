@@ -1,0 +1,76 @@
+[
+  {
+    "ContainingType": "personaAutorizadaBack.Controllers.AlumnoController",
+    "Method": "ObtenerInfoAlumno",
+    "RelativePath": "Alumno/Detalles/{TipoDocumento}/{NumeroDocumento}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TipoDocumento",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "NumeroDocumento",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "personaAutorizadaBack.Controllers.AlumnoController",
+    "Method": "ObtenerTipoDocumentos",
+    "RelativePath": "Alumno/TipoDocumento",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "personaAutorizadaBack.Controllers.AlumnoPersonaRecojerController",
+    "Method": "RegistrarPersonasRecojer",
+    "RelativePath": "AlumnoPersonaRecojer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "personaAutorizadaBack.Dtos.AlumnoPersonaRecojoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "personaAutorizadaBack.Dtos.AlumnoPersonaRecojoDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "AlumnoPersonaRecojer"
+  },
+  {
+    "ContainingType": "personaAutorizadaBack.Controllers.InformacionPersonaController",
+    "Method": "ObtenerInfoPersona",
+    "RelativePath": "InformacionPersona/{NumeroDocumento}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "NumeroDocumento",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
