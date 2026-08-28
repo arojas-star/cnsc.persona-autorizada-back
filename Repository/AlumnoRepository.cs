@@ -18,7 +18,7 @@ namespace personaAutorizadaBack.Repository
         public async Task<AlumnoResumenDto?> ExisteAlumnoPorCodigo(string codigoAlumno)
         {
             await using var context = await _contextFactory.CreateDbContextAsync();
-            var registros = await _context.Database.SqlQuery<AlumnoResumenDto>($"EXEC sistemas.usp_Alumnos_ObtenerActivoXDocumentoCodigo @CodigoAlumno = {codigoAlumno};").ToListAsync();
+            var registros = await _context.Database.SqlQuery<AlumnoResumenDto>($"EXEC sistemas.usp_Alumnos_ObtenerActivoXDocumentoCodigo @CodigoAlumno = {codigoAlumno};").AsNoTracking().ToListAsync();
 
             return registros.FirstOrDefault();
         }

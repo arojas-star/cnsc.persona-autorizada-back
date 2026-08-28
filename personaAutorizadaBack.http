@@ -1,4 +1,4 @@
-@personaAutorizadaBack_HostAddress = http://localhost:5133
+@personaAutorizadaBack_HostAddress = http://192.168.7.84:97
 
 GET {{personaAutorizadaBack_HostAddress}}/InformacionPersona/70855673
 Accept: application/json
@@ -12,6 +12,7 @@ Accept: application/json
 
 GET {{personaAutorizadaBack_HostAddress}}/Alumno/TipoDocumento
 Accept: application/json
+x-api-key: 14137442-8a16-4c0a-92d1-bc0f635cb009
 
 ###
 

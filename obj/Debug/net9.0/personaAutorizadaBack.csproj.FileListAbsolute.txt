@@ -80,3 +80,9 @@ C:\Users\arojas\Desktop\proyectos\personaAutorizadaBack\obj\Debug\net9.0\persona
 C:\Users\arojas\Desktop\proyectos\personaAutorizadaBack\obj\Debug\net9.0\personaAutorizadaBack.genruntimeconfig.cache
 C:\Users\arojas\Desktop\proyectos\personaAutorizadaBack\obj\Debug\net9.0\ref\personaAutorizadaBack.dll
 C:\Users\arojas\Desktop\proyectos\personaAutorizadaBack\obj\Debug\net9.0\personaAutorizadaBack.sourcelink.json
+C:\Users\arojas\Desktop\proyectos\personaAutorizadaBack\bin\Debug\net9.0\publish\web.config
+C:\Users\arojas\Desktop\proyectos\personaAutorizadaBack\bin\Debug\net9.0\publish\appsettings.Development.json
+C:\Users\arojas\Desktop\proyectos\personaAutorizadaBack\bin\Debug\net9.0\publish\appsettings.json
+C:\Users\arojas\Desktop\proyectos\personaAutorizadaBack\bin\Debug\net9.0\publish\personaAutorizadaBack.deps.json
+C:\Users\arojas\Desktop\proyectos\personaAutorizadaBack\bin\Debug\net9.0\publish\personaAutorizadaBack.runtimeconfig.json
+C:\Users\arojas\Desktop\proyectos\personaAutorizadaBack\bin\Debug\net9.0\publish\personaAutorizadaBack.staticwebassets.endpoints.json

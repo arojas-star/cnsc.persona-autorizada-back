@@ -42,18 +42,21 @@ namespace personaAutorizadaBack.Services
 
             if (personaRecojoDto.codigoAlumnosParientes != null && personaRecojoDto.codigoAlumnosParientes.Count > 0)
             {
-                var tareas = personaRecojoDto.codigoAlumnosParientes.Select(cod => _alumnoRepository.ExisteAlumnoPorCodigo(cod));
-                var resultados = await Task.WhenAll(tareas);
-
-                if (resultados == null || resultados.Any(x => x is null))
+                foreach (var cod in personaRecojoDto.codigoAlumnosParientes)
                 {
-                    return ServiceResult<AlumnoPersonaRecojoDto>.Fail(
-                        "Ah ocurrido un error al intentar registrar",
-                        404
-                    );
-                }
+                    var resultado = await _alumnoRepository
+                        .ExisteAlumnoPorCodigo(cod);
 
-                alumnos.AddRange(resultados);
+                    if (resultado is null)
+                    {
+                        return ServiceResult<AlumnoPersonaRecojoDto>.Fail(
+                            "Ha ocurrido un error al intentar registrar",
+                            404
+                        );
+                    }
+
+                    alumnos.Add(resultado);
+                }
             }
 
             List<AlumnoPersonaRecojo> alumnoPersonasRecojoData = [];
