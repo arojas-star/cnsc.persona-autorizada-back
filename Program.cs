@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using personaAutorizadaBack.Configuration;
 using personaAutorizadaBack.Middleware;
@@ -10,19 +11,25 @@ using personaAutorizadaBack.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var allowedOrigins =
+    builder.Configuration
+        .GetSection("Cors:AllowedOrigins")
+        .Get<string[]>() ?? Array.Empty<string>();
+
 var corsPolicyName = "AllowReactViteApp";
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: corsPolicyName, policy =>
     {
         policy.WithOrigins(
-                "http://localhost:5173",
-                "http://127.0.0.1:5173"
+                allowedOrigins
               )
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
 });
+builder.Services.Configure<ApiKeyOptions>(builder.Configuration.GetSection("ApiKeyOptions"));
+
 
 builder.Services.AddMemoryCache();
 
@@ -91,7 +98,10 @@ app.UseCors(corsPolicyName);
 
 app.UseAuthorization();
 
+app.UseMiddleware<ApiKeyMiddleware>();
+
 app.UseMiddleware<GlobalServiceMiddleware>();
+
 
 app.MapControllers();
 

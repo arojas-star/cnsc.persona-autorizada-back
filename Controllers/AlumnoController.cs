@@ -30,7 +30,7 @@ namespace personaAutorizadaBack.Controllers
             {
                 return NotFound(new
                 {
-                    mensaje = "No se encontró información para el DNI"
+                    mensaje = $"No se encontró información para el Número de Documento {NumeroDocumento}"
                 });
             }
 

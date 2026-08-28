@@ -1,54 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\arojas\\Desktop\\proyectos\\personaAutorizadaBack\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{C2A173B9-E603-46D9-895E-AC626B7FFB45}|personaAutorizadaBack.csproj|c:\\users\\arojas\\desktop\\proyectos\\personaautorizadaback\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{C2A173B9-E603-46D9-895E-AC626B7FFB45}|personaAutorizadaBack.csproj|solutionrelative:appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2A173B9-E603-46D9-895E-AC626B7FFB45}|personaAutorizadaBack.csproj|c:\\users\\arojas\\desktop\\proyectos\\personaautorizadaback\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{C2A173B9-E603-46D9-895E-AC626B7FFB45}|personaAutorizadaBack.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.Development.json",
-              "DocumentMoniker": "C:\\Users\\arojas\\Desktop\\proyectos\\personaAutorizadaBack\\appsettings.Development.json",
-              "RelativeDocumentMoniker": "appsettings.Development.json",
-              "ToolTip": "C:\\Users\\arojas\\Desktop\\proyectos\\personaAutorizadaBack\\appsettings.Development.json",
-              "RelativeToolTip": "appsettings.Development.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-08-27T19:45:27.744Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\arojas\\Desktop\\proyectos\\personaAutorizadaBack\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\arojas\\Desktop\\proyectos\\personaAutorizadaBack\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-08-27T19:44:48.174Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
