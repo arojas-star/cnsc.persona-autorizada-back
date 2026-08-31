@@ -9,19 +9,44 @@ namespace personaAutorizadaBack.Controllers
     public class InformacionPersonaController : ControllerBase
     {
         private readonly IApiExternaService _apiExternaService;
+        private readonly IParienteService _parienteService;
 
         public InformacionPersonaController(
-            IApiExternaService apiExternaService)
+            IApiExternaService apiExternaService, IParienteService parienteService)
         {
             _apiExternaService = apiExternaService;
+            _parienteService = parienteService;
         }
 
-        [HttpGet("{NumeroDocumento}")]
-        public async Task<IActionResult> ObtenerInfoPersona(string NumeroDocumento)
+        [HttpGet("{CodigoTipoDocumento}/{NumeroDocumento}")]
+        public async Task<IActionResult> ObtenerInfoPersona(int CodigoTipoDocumento, string NumeroDocumento)
         {
             if (string.IsNullOrWhiteSpace(NumeroDocumento))
             {
                 return BadRequest("El Numero de Documento es obligatorio");
+            }
+
+            var existeBd = await _parienteService.ObtenerParienteXTipoNumeroDocumento(CodigoTipoDocumento, NumeroDocumento);
+
+            if (existeBd is not null)
+            {
+                return Ok(new
+                {
+                    CodigoTipoDocumento = existeBd.CodigoTipoDocumento,
+                    TipoDocumentoTexto = existeBd.TipoDocumentoTexto,
+                    NumeroDocumento = NumeroDocumento,
+                    Nombres = existeBd.Nombre,
+                    ApellidoPaterno = existeBd.ApellidoPaterno,
+                    ApellidoMaterno = existeBd.ApellidoMaterno,
+                });
+            }
+
+            if (CodigoTipoDocumento != 2)
+            {
+                return NotFound(new
+                {
+                    mensaje = $"No se encontró información para el Número de documento: {NumeroDocumento}"
+                });
             }
 
             var resultado = await _apiExternaService.ObtenerInfoPersona(NumeroDocumento);
@@ -41,6 +66,8 @@ namespace personaAutorizadaBack.Controllers
 
             return Ok(new
             {
+                CodigoTipoDocumento = 2,
+                TipoDocumentoTexto = "D N I",
                 NumeroDocumento = NumeroDocumento,
                 Nombres = resultado.Data.Nombres,
                 ApellidoPaterno = resultado.Data.ApellidoPaterno,

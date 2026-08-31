@@ -47,10 +47,12 @@ builder.Services.Configure<FeatureFlagOptions>(
 builder.Services.AddScoped<IAlumnoRepository, AlumnoRepository>();
 builder.Services.AddScoped<IAlumnoPersonaRecojoRepository, AlumnoPersonaRecojoRepository>();
 builder.Services.AddScoped<IFeatureFlagRepository, FeatureFlagRepository>();
+builder.Services.AddScoped<IParienteRepository, ParienteRepository>();
 
 builder.Services.AddScoped<IAlumnoPersonaRecojoService, AlumnoPersonaRecojoService>();
 builder.Services.AddScoped<IAlumnoService, AlumnoService>();
 builder.Services.AddScoped<IFeatureFlagService, FeatureFlagService>();
+builder.Services.AddScoped<IParienteService, ParienteService>();
 
 builder.Services.AddHttpClient<IApiExternaService, ApiExternaService>(
     (serviceProvider, client) =>

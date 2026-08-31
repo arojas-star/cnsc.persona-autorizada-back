@@ -1,7 +1,8 @@
-@personaAutorizadaBack_HostAddress = http://192.168.7.84:97
+@personaAutorizadaBack_HostAddress = http://localhost:5133
 
-GET {{personaAutorizadaBack_HostAddress}}/InformacionPersona/70855673
+GET {{personaAutorizadaBack_HostAddress}}/InformacionPersona/5/JP810920
 Accept: application/json
+x-api-key: mi-api-key-super-secreta
 
 ###
 
