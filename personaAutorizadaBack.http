@@ -1,21 +1,24 @@
 @personaAutorizadaBack_HostAddress = http://localhost:5133
+@personaAutorizadaBack_ApiKey = mi-api-key-super-secreta
 
 GET {{personaAutorizadaBack_HostAddress}}/InformacionPersona/5/JP810920
 Accept: application/json
-x-api-key: mi-api-key-super-secreta
+x-api-key: {{personaAutorizadaBack_ApiKey}}
 
 ###
 
 GET {{personaAutorizadaBack_HostAddress}}/Alumno/Detalles/2/78259641
 Accept: application/json
+x-api-key: {{personaAutorizadaBack_ApiKey}}
 
 ###
 
 GET {{personaAutorizadaBack_HostAddress}}/Alumno/TipoDocumento
 Accept: application/json
-x-api-key: 14137442-8a16-4c0a-92d1-bc0f635cb009
+x-api-key: {{personaAutorizadaBack_ApiKey}}
 
 ###
 
 GET {{personaAutorizadaBack_HostAddress}}/ServiceStatus
 Accept: application/json
+x-api-key: {{personaAutorizadaBack_ApiKey}}
