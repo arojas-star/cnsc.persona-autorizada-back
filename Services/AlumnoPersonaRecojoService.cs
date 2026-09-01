@@ -28,15 +28,21 @@ namespace personaAutorizadaBack.Services
                 );
             }
 
-            var tieneRegistros = await _personRecojoRepository.ExisteRegistroXAlumno(personaRecojoDto.CodigoAlumno);
+            /*
+                * Ya no se va a bloquear cuando se haya registrado con anterioridad para un mismo alumno/estudiante
+             */
+            //var tieneRegistros = await _personRecojoRepository.ExisteRegistroXAlumno(personaRecojoDto.CodigoAlumno);
 
-            if (tieneRegistros.Count() > 0)
-            {
-                return ServiceResult<AlumnoPersonaRecojoDto>.Fail(
-                    "Ya existen registros previos para este estudiante",
-                    400
-                );
-            }
+            //if (tieneRegistros.Count() > 0)
+            //{
+            //    return ServiceResult<AlumnoPersonaRecojoDto>.Fail(
+            //        "Ya existen registros previos para este estudiante",
+            //        409
+            //    );
+            //}
+            /*
+               **********
+            */
 
             List<AlumnoResumenDto> alumnos = [existe];
 
@@ -49,10 +55,7 @@ namespace personaAutorizadaBack.Services
 
                     if (resultado is null)
                     {
-                        return ServiceResult<AlumnoPersonaRecojoDto>.Fail(
-                            "Ha ocurrido un error al intentar registrar",
-                            404
-                        );
+                        continue;
                     }
 
                     alumnos.Add(resultado);
@@ -75,9 +78,9 @@ namespace personaAutorizadaBack.Services
                         Nombres = personaRecojo.Nombres,
                     };
 
-                    var existeRegistroDuplidado = await _personRecojoRepository.ExisteRegistroXAlumno(alumno.CodigoAlumno);
+                    var existeRegistroDuplidado = await _personRecojoRepository.ExisteRegistroXAlumnoPersonaAutorizada(alumno.CodigoAlumno, personaRecojo.TipoDocumento, personaRecojo.NumeroDocumento);
 
-                    if (existeRegistroDuplidado.Count() == 0)
+                    if (existeRegistroDuplidado is null)
                     {
                         alumnoPersonasRecojoData.Add(alumnoPersonaRecojoData);
                     }

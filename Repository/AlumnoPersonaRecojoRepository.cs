@@ -20,6 +20,13 @@ namespace personaAutorizadaBack.Repository
             return registros;
         }
 
+        public async Task<AlumnoPersonaRecojo?> ExisteRegistroXAlumnoPersonaAutorizada(string CodigoAlumno, int TipoDocumentoPersonaAutorizada, string NumeroDocumentoPersonaAutorizada)
+        {
+            List<AlumnoPersonaRecojo> registros = await _context.AlumnoPersonasRecojo.Where(p => p.CodigoAlumno == CodigoAlumno && p.CodigoTipoDocumento == TipoDocumentoPersonaAutorizada && p.NumeroDocumento == NumeroDocumentoPersonaAutorizada).ToListAsync();
+
+            return registros.FirstOrDefault();
+        }
+
         public async Task<AlumnoPersonaRecojo> RegistrarPersona(AlumnoPersonaRecojo alumnoRecojosDto)
         {
             var registro = new AlumnoPersonaRecojo
