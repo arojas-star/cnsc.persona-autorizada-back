@@ -35,7 +35,8 @@ builder.Services.AddMemoryCache();
 
 builder.Services.AddDbContextFactory<AppDbContext>(options =>
     options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        o => o.UseCompatibilityLevel(120)
     ));
 
 builder.Services.Configure<ApiExternaSettings>(
@@ -48,11 +49,13 @@ builder.Services.AddScoped<IAlumnoRepository, AlumnoRepository>();
 builder.Services.AddScoped<IAlumnoPersonaRecojoRepository, AlumnoPersonaRecojoRepository>();
 builder.Services.AddScoped<IFeatureFlagRepository, FeatureFlagRepository>();
 builder.Services.AddScoped<IParienteRepository, ParienteRepository>();
+builder.Services.AddScoped<IVessperienciasRepository, VessperienciasRepository>();
 
 builder.Services.AddScoped<IAlumnoPersonaRecojoService, AlumnoPersonaRecojoService>();
 builder.Services.AddScoped<IAlumnoService, AlumnoService>();
 builder.Services.AddScoped<IFeatureFlagService, FeatureFlagService>();
 builder.Services.AddScoped<IParienteService, ParienteService>();
+builder.Services.AddScoped<IVessperienciasServices, VessperienciasServices>();
 
 builder.Services.AddHttpClient<IApiExternaService, ApiExternaService>(
     (serviceProvider, client) =>
