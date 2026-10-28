@@ -8,9 +8,9 @@ namespace personaAutorizadaBack.Services.Interfaces
         Task<List<VessperienciasAreaResponse>> GetAreas();
         Task<List<VessperienciasPersonalResponse>> GetPersonal(int CodigoArea);
         Task<VessperienciasPersonal?> GetPersonalXCodigo(int CodigoPersonal);
-        Task<List<VessperienciasTemaResponse>> GetPonencias();
+        Task<List<VessperienciasTemaResponse>> GetPonencias(int CodigoTurno);
         Task<string> GetPonenciasTemas(List<int> CodigosPonencia);
-        Task<List<VessperienciasPonencia>> ValidatePonencias(List<int> CodigosPonencia);
+        Task<List<VessperienciasPonencia>> ValidatePonencias(List<VessperienciasTemaDto> CodigosPonencia);
         Task SaveInscripcion(VessperienciasDto dto);
     }
 }

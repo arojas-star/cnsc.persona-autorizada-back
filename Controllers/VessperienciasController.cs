@@ -31,10 +31,10 @@ namespace personaAutorizadaBack.Controllers
             return Ok(personal);
         }
 
-        [HttpGet("ponencia")]
-        public async Task<IActionResult> GetPonencias()
+        [HttpGet("ponencia/{CodigoTurno:int}")]
+        public async Task<IActionResult> GetPonencias([FromRoute] int CodigoTurno)
         {
-            var ponencias = await _vessperienciasService.GetPonencias();
+            var ponencias = await _vessperienciasService.GetPonencias(CodigoTurno);
 
             return Ok(ponencias);
         }
@@ -66,9 +66,9 @@ namespace personaAutorizadaBack.Controllers
 
             if (dto.temas.Count != temas.Count)
             {
-                List<int> diferencia = dto.temas
-                .Except(temas.Select(o => o.CodigoPonencia))
-                .ToList();
+                List<int> diferencia = dto.temas.Select(x => x.codigoTema).ToList()
+                    .Except(temas.Select(o => o.CodigoPonencia))
+                    .ToList();
 
                 var temasDescripcion = await _vessperienciasService.GetPonenciasTemas(diferencia);
 

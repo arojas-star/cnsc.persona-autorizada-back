@@ -50,12 +50,16 @@ builder.Services.AddScoped<IAlumnoPersonaRecojoRepository, AlumnoPersonaRecojoRe
 builder.Services.AddScoped<IFeatureFlagRepository, FeatureFlagRepository>();
 builder.Services.AddScoped<IParienteRepository, ParienteRepository>();
 builder.Services.AddScoped<IVessperienciasRepository, VessperienciasRepository>();
+builder.Services.AddScoped<IEventoPapaRepository, EventoPapaRepository>();
+builder.Services.AddScoped<IPersonalRepository, PersonalRepository>();
 
 builder.Services.AddScoped<IAlumnoPersonaRecojoService, AlumnoPersonaRecojoService>();
 builder.Services.AddScoped<IAlumnoService, AlumnoService>();
 builder.Services.AddScoped<IFeatureFlagService, FeatureFlagService>();
 builder.Services.AddScoped<IParienteService, ParienteService>();
 builder.Services.AddScoped<IVessperienciasServices, VessperienciasServices>();
+builder.Services.AddScoped<IPersonalService, PersonalService>();
+builder.Services.AddScoped<IEventoPapaService, EventoPapaService>();
 
 builder.Services.AddHttpClient<IApiExternaService, ApiExternaService>(
     (serviceProvider, client) =>

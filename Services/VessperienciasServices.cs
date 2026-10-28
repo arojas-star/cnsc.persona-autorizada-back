@@ -29,9 +29,9 @@ namespace personaAutorizadaBack.Services
             return await _vessperienciasRepository.GetPersonal(CodigoPersonal);
         }
 
-        public async Task<List<VessperienciasTemaResponse>> GetPonencias()
+        public async Task<List<VessperienciasTemaResponse>> GetPonencias(int CodigoTurno)
         {
-            return await _vessperienciasRepository.GetPonencias();
+            return await _vessperienciasRepository.GetPonencias(CodigoTurno);
         }
 
         public async Task<string> GetPonenciasTemas(List<int> CodigosPonencia)
@@ -39,9 +39,21 @@ namespace personaAutorizadaBack.Services
             return await _vessperienciasRepository.GetTema(CodigosPonencia);
         }
 
-        public async Task<List<VessperienciasPonencia>> ValidatePonencias(List<int> CodigosPonencia)
+        public async Task<List<VessperienciasPonencia>> ValidatePonencias(List<VessperienciasTemaDto> CodigosPonencia)
         {
-            return await _vessperienciasRepository.ValidatePonencias(CodigosPonencia);
+            var datos = new List<VessperienciasPonencia>();
+
+            foreach (var item in CodigosPonencia)
+            {
+                var tema = await _vessperienciasRepository.ValidatePonencias(item.codigoTema, item.codigoTurno);
+
+                if (tema != null)
+                {
+                    datos.Add(tema);
+                }
+            }
+
+            return datos;
         }
 
         public async Task SaveInscripcion(VessperienciasDto dto)

@@ -22,3 +22,21 @@ x-api-key: {{personaAutorizadaBack_ApiKey}}
 GET {{personaAutorizadaBack_HostAddress}}/ServiceStatus
 Accept: application/json
 x-api-key: {{personaAutorizadaBack_ApiKey}}
+
+###
+
+GET {{personaAutorizadaBack_HostAddress}}/EventoPapa/Personal/1/70855673
+Accept: application/json
+x-api-key: {{personaAutorizadaBack_ApiKey}}
+
+###
+
+GET {{personaAutorizadaBack_HostAddress}}/EventoPapa/Horario
+Accept: application/json
+x-api-key: {{personaAutorizadaBack_ApiKey}}
+
+###
+
+GET {{personaAutorizadaBack_HostAddress}}/EventoPapa/Inscripcion
+Accept: application/json
+x-api-key: {{personaAutorizadaBack_ApiKey}}

@@ -37,11 +37,11 @@ namespace personaAutorizadaBack.Repository
             return await _context.VessperienciasPersonales.Where(p => p.CodigoPersonal == CodigoPersonal).FirstOrDefaultAsync();
         }
 
-        public async Task<List<VessperienciasTemaResponse>> GetPonencias()
+        public async Task<List<VessperienciasTemaResponse>> GetPonencias(int CodigoTurno)
         {
             return await _context.VessperienciasPonencias
                 .Where(x => 
-                    x.Vacantes >  _context.Vessperiencias.Where(v => v.CodigoPonencia == x.CodigoPonencia).Count()
+                    x.Vacantes >  _context.Vessperiencias.Where(v => v.CodigoPonencia == x.CodigoPonencia && v.CodigoTurno == CodigoTurno).Count()
                 ).OrderBy(x => x.Tema)
                 .Select(x => new VessperienciasTemaResponse
                 (
@@ -50,13 +50,13 @@ namespace personaAutorizadaBack.Repository
                 )).ToListAsync();
         }
 
-        public async Task<List<VessperienciasPonencia>> ValidatePonencias(List<int> CodigosPonencia)
+        public async Task<VessperienciasPonencia?> ValidatePonencias(int CodigosPonencia, int? CodigoTurno)
         {
             return await _context.VessperienciasPonencias
                 .Where(x =>
-                    CodigosPonencia.Contains(x.CodigoPonencia) &&
-                    x.Vacantes > _context.Vessperiencias.Where(v => v.CodigoPonencia == x.CodigoPonencia).Count()
-                ).ToListAsync();
+                    x.CodigoPonencia == CodigosPonencia &&
+                    x.Vacantes > _context.Vessperiencias.Where(v => v.CodigoPonencia == x.CodigoPonencia && ( CodigoTurno == null || v.CodigoTurno == CodigoTurno )).Count()
+                ).FirstOrDefaultAsync();
         }
 
         public async Task<string> GetTema(List<int> CodigosPonencia)
@@ -76,7 +76,8 @@ namespace personaAutorizadaBack.Repository
             var data = dto.temas.Select(t => new Vessperiencias
             {
                 CodigoPersonal = dto.codigoPersonal,
-                CodigoPonencia = t
+                CodigoPonencia = t.codigoTema,
+                CodigoTurno = t.codigoTurno
             }).ToList();
 
             try
@@ -86,9 +87,10 @@ namespace personaAutorizadaBack.Repository
                 await _context.SaveChangesAsync();
 
                 await transaction.CommitAsync();
-            } catch
+            } catch(Exception ex)
             {
                 await transaction.RollbackAsync();
+                throw;
             }
         }
     }

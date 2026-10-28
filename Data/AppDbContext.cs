@@ -16,6 +16,11 @@ public class AppDbContext : DbContext
     public DbSet<VessperienciasPonencia> VessperienciasPonencias { get; set; }
     public DbSet<Vessperiencias> Vessperiencias { get; set; }
 
+    public DbSet<Personal> Personal { get; set; }
+
+    public DbSet<EventoPapaHorario> EventoPapaHorarios { get; set; } = null!;
+    public DbSet<EventoPapa> EventosPapa { get; set; } = null!;
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -124,6 +129,77 @@ public class AppDbContext : DbContext
                   .HasForeignKey(d => d.CodigoPonencia)
                   .OnDelete(DeleteBehavior.ClientSetNull)
                   .HasConstraintName("FK_Vessperiencias_VessperienciasPonencia");
+        });
+
+        modelBuilder.Entity<Personal>(entity =>
+        {
+            entity.ToTable("EventoPapaPersonal", "inscripcion");
+
+            entity.HasKey(e => e.CodigoPersonal)
+                  .HasName("PK_EventoPapaPersonal_1");
+
+            entity.Property(e => e.CodigoPersonal)
+                  .ValueGeneratedNever();
+
+            entity.Property(e => e.NombreCompleto)
+                  .HasColumnType("varchar(250)")
+                  .UseCollation("Modern_Spanish_CI_AS");
+
+            entity.Property(e => e.FechaNacimiento)
+                  .HasColumnType("date");
+
+            entity.Property(e => e.NumeroDocumento)
+                  .HasColumnType("varchar(100)");
+
+            entity.Property(e => e.Correo)
+                  .HasColumnType("varchar(150)");
+        });
+
+        // 2. Configuración de EventoPapaHorario
+        modelBuilder.Entity<EventoPapaHorario>(entity =>
+        {
+            entity.ToTable("EventoPapaHorario", "inscripcion");
+
+            entity.HasKey(e => e.CodigoHorarioEventoPapa)
+                  .HasName("PK_EventoPapaHorario");
+
+            entity.Property(e => e.CodigoHorarioEventoPapa)
+                  .ValueGeneratedNever();
+
+            entity.Property(e => e.Descripcion)
+                  .HasColumnType("varchar(max)")
+                  .UseCollation("Modern_Spanish_CI_AS");
+
+            entity.Property(e => e.Vacantes)
+                  .HasColumnType("int");
+        });
+
+        // 3. Configuración de EventoPapa (Tabla con Clave Compuesta y Claves Foráneas)
+        modelBuilder.Entity<EventoPapa>(entity =>
+        {
+            entity.ToTable("EventoPapa", "inscripcion");
+
+            // Clave primaria compuesta
+            entity.HasKey(e => new { e.CodigoPersonal, e.CodigoHorarioEventoPapa })
+                  .HasName("PK_EventoPapa");
+
+            entity.Property(e => e.FechaRegistro)
+                  .HasColumnType("datetime")
+                  .HasDefaultValueSql("GETDATE()");
+
+            // Relación 1:N entre Personal y EventoPapa (FK_EventoPapa_Personal)
+            entity.HasOne(d => d.Personal)
+                  .WithMany(p => p.EventosPapa)
+                  .HasForeignKey(d => d.CodigoPersonal)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_EventoPapa_Personal");
+
+            // Relación 1:N entre EventoPapaHorario y EventoPapa (FK_EventoPapa_EventoPapaHorario)
+            entity.HasOne(d => d.EventoPapaHorario)
+                  .WithMany(p => p.EventosPapa)
+                  .HasForeignKey(d => d.CodigoHorarioEventoPapa)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_EventoPapa_EventoPapaHorario");
         });
     }
 }
