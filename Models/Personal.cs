@@ -24,6 +24,8 @@ namespace personaAutorizadaBack.Models
         [Column(TypeName = "varchar(150)")]
         public string? Correo { get; set; }
 
+        public string? Celular { get; set; }
+
         // Propiedad de navegación
         public virtual ICollection<EventoPapa> EventosPapa { get; set; } = new List<EventoPapa>();
     }

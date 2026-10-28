@@ -25,6 +25,14 @@ namespace personaAutorizadaBack.Repository
                 .ToListAsync();
         }
 
+        public async Task<int> GetSpotsTake(int CodigoSchedule)
+        {
+            return await _context.EventosPapa
+                .Where(e => 
+                    e.CodigoHorarioEventoPapa == CodigoSchedule
+                ).CountAsync();
+        }
+
         public async Task<EventoPapaHorario?> GetSchedule(int CodigoSchedule)
         {
             return await _context.EventoPapaHorarios

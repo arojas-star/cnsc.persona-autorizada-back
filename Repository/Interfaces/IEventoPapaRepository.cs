@@ -11,5 +11,7 @@ namespace personaAutorizadaBack.Repository.Interfaces
         Task<EventoPapa?> ExistInscription(int IdPersonal);
 
         Task RegisterInscripcion(EventoPapa dto);
+
+        Task<int> GetSpotsTake(int CodigoSchedule);
     }
 }

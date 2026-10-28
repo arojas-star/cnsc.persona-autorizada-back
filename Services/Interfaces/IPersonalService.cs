@@ -7,5 +7,6 @@ namespace personaAutorizadaBack.Services.Interfaces
     {
         Task<EventoPapaResponse?> GetPersonal(int CodigoPersonal);
         Task<EventoPapaResponse?> GetPersonalByDocument(EventoPapaPersonalRequest dto);
+        Task UpdatePersonal(int CodigoPersonal, string Correo, string Celular);
     }
 }

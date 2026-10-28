@@ -6,5 +6,7 @@ namespace personaAutorizadaBack.Repository.Interfaces
     {
         Task<Personal?> GetPersonal(int CodigoPersonal);
         Task<Personal?> GetPersonalByDocument(int DocumentType, string DocumentNumber);
+        Task UpdateCorreo(int CodigoPersonal, string Correo);
+        Task UpdateCelular(int CodigoPersonal, string Celular);
     }
 }

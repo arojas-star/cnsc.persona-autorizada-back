@@ -14,6 +14,12 @@ namespace personaAutorizadaBack.Services
             _repository = repository;
         }
 
+        public async Task UpdatePersonal(int CodigoPersonal, string Correo, string Celular)
+        {
+            await _repository.UpdateCorreo(CodigoPersonal, Correo);
+            await _repository.UpdateCelular(CodigoPersonal, Celular);
+        }
+
         public async Task<EventoPapaResponse?> GetPersonal(int CodigoPersonal)
         {
             var personal = await _repository.GetPersonal(CodigoPersonal);

@@ -22,5 +22,32 @@ namespace personaAutorizadaBack.Repository
         {
             return await _context.Personal.Where(p => p.NumeroDocumento == DocumentNumber).FirstOrDefaultAsync();
         }
+
+        public async Task UpdateCorreo(int CodigoPersonal, string Correo)
+        {
+            var personal = await _context.Personal.Where(p => p.CodigoPersonal == CodigoPersonal).FirstOrDefaultAsync();
+
+            if (personal == null) {
+                return;
+            }
+
+            personal.Correo = Correo;
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateCelular(int CodigoPersonal, string Celular)
+        {
+            var personal = await _context.Personal.Where(p => p.CodigoPersonal == CodigoPersonal).FirstOrDefaultAsync();
+
+            if (personal == null)
+            {
+                return;
+            }
+
+            personal.Celular = Celular;
+
+            await _context.SaveChangesAsync();
+        }
     }
 }

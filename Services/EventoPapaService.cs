@@ -54,14 +54,28 @@ namespace personaAutorizadaBack.Services
                 return (null, "No se encontró un Horario válido.");
             }
 
-            if (schedule.MinEdad.HasValue && personal.Edad.HasValue && schedule.MinEdad >= personal.Edad)
+            var spotstake = await _repository.GetSpotsTake(dto.CodigoEvento);
+
+            if (spotstake >= schedule.Vacantes)
+            {
+                return (false, "No hay cupos disponibles para este horario.");
+            }
+
+            int? EdadPersonal = dto.Edad != null ? dto.Edad : personal.Edad;
+
+            if (schedule.MinEdad.HasValue && EdadPersonal.HasValue && schedule.MinEdad >= EdadPersonal)
             {
                 return (false, "No cuenta con la edad requerida. Por favor verificar las condiciones.");
             }
 
-            if (schedule.MaxEdad.HasValue && personal.Edad.HasValue && schedule.MaxEdad < personal.Edad)
+            if (schedule.MaxEdad.HasValue && EdadPersonal.HasValue && schedule.MaxEdad < EdadPersonal)
             {
                 return (false, "No cuenta con la edad requerida. Por favor verificar las condiciones.");
+            }
+
+            if (dto.Correo != null && dto.Celular != null)
+            {
+                await _personalService.UpdatePersonal(personal.CodigoPersonal, dto.Correo, dto.Celular);
             }
 
             EventoPapa data = new()
