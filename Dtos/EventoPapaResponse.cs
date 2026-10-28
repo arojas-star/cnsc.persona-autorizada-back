@@ -10,6 +10,10 @@
 
         public string Correo { get; set; } = string.Empty;
 
+        public string? Celular { get; set; } = string.Empty;
+
+        public string FechaNacimiento { get; set; } = string.Empty;
+
         public int? Edad { get; set; }
     }
 

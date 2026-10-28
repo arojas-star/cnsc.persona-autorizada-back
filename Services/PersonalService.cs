@@ -51,7 +51,9 @@ namespace personaAutorizadaBack.Services
                 NumeroDocumento = personal.NumeroDocumento!,
                 Correo = personal.Correo!,
                 NombreCompleto = personal.NombreCompleto!,
-                Edad = Edad
+                Edad = Edad,
+                Celular = personal.Celular,
+                FechaNacimiento = personal.FechaNacimiento?.ToString("dd/MM/yyyy") ?? ""
             };
         }
 
@@ -83,7 +85,9 @@ namespace personaAutorizadaBack.Services
                 NumeroDocumento = personal.NumeroDocumento!,
                 Correo = personal.Correo!,
                 NombreCompleto = personal.NombreCompleto!,
-                Edad = Edad
+                Edad = Edad,
+                Celular = personal.Celular,
+                FechaNacimiento = personal.FechaNacimiento?.ToString("dd/MM/yyyy") ?? ""
             };
         }
     }
