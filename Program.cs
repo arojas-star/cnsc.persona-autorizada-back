@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using personaAutorizadaBack.Configuration;
 using personaAutorizadaBack.Middleware;
@@ -60,6 +59,8 @@ builder.Services.AddScoped<IParienteService, ParienteService>();
 builder.Services.AddScoped<IVessperienciasServices, VessperienciasServices>();
 builder.Services.AddScoped<IPersonalService, PersonalService>();
 builder.Services.AddScoped<IEventoPapaService, EventoPapaService>();
+
+builder.Services.AddScoped<ISharingDayService, SharingDayService>();
 
 builder.Services.AddHttpClient<IApiExternaService, ApiExternaService>(
     (serviceProvider, client) =>
