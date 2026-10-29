@@ -40,3 +40,36 @@ x-api-key: {{personaAutorizadaBack_ApiKey}}
 GET {{personaAutorizadaBack_HostAddress}}/EventoPapa/Inscripcion
 Accept: application/json
 x-api-key: {{personaAutorizadaBack_ApiKey}}
+
+
+###
+
+POST {{personaAutorizadaBack_HostAddress}}/Sharingday/Persona
+x-api-key: {{personaAutorizadaBack_ApiKey}}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "codigoTipoDocumento": 2,
+  "numeroDocumento": "41712601",
+  "codigoGrado": 6,
+  "codigoSeccion": 1
+}
+
+###
+
+GET {{personaAutorizadaBack_HostAddress}}/Sharingday/Horario/6/1
+Accept: application/json
+x-api-key: {{personaAutorizadaBack_ApiKey}}
+
+###
+
+POST {{personaAutorizadaBack_HostAddress}}/Sharingday/Inscripcion
+Accept: application/json
+Content-Type: application/json
+x-api-key: {{personaAutorizadaBack_ApiKey}}
+
+{
+  "codigoPariente": "20240970",
+  "codigoTurno": 1
+}
