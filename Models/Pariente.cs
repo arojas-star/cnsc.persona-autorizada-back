@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace personaAutorizadaBack.Models
 {
-    [Table("Pariente", Schema = "admision")]
+    [Table("Pariente", Schema = "dbo")]
     public class Pariente
     {
         [Key]
